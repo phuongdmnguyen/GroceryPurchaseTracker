@@ -37,7 +37,7 @@ public class Groceries {
     }
 
 
-    private int getTotal(ArrayList<Item> groceries) {
+    private static int getTotal(ArrayList<Item> groceries) {
         int sum = 0;
         for (Item i : groceries) {
             sum += i.cost;
@@ -45,8 +45,7 @@ public class Groceries {
         return sum;
     }
 
-    public void main(String[] args) {
-        processGroceries();
-        getTotal(groceries);
+    public static void main(String[] args) {
+        new Groceries();;
     }
 }
