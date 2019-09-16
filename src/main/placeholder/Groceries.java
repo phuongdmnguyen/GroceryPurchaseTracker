@@ -45,7 +45,7 @@ public class Groceries {
         }
         return sum;
     }
-d
+
     public static void main(String[] args) {
         new Groceries();;
     }
