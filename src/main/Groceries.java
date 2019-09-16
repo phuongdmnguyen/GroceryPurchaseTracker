@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Groceries {
-    private  ArrayList<Item> groceries;
+    private ArrayList<Item> groceries;
     private Scanner scanner;
 
     public Groceries() {
@@ -29,29 +29,28 @@ public class Groceries {
             System.out.println("Please input your item's calorie");
             icalorie = scanner.nextLine();
             int ik = Integer.parseInt(icalorie);
-            Item item = new Item(iname,ic,iq,ik);
-
+            Item item = new Item(iname, ic, iq, ik);
             groceries.add(item);
         }
     }
 
     public static ArrayList<Item> getGroceries(ArrayList<Item> groceries) {
-        for (Item i: groceries)
+        for (Item i : groceries) {
             System.out.println(i.name);
+        }
         return groceries;
-    }
 
 
     public static int getTotal(ArrayList<Item> groceries) {
         int sum = 0;
-        for (Item i: groceries) {
+        for (Item i : groceries) {
             sum += i.cost;
         }
         return sum;
     }
 
     public static void main(String[]args) {
-        new Groceries();
+       new processGroceries();
     }
 }
 
