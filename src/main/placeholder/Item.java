@@ -9,7 +9,7 @@ public class Item {
     int quantity; // amount bought
     ArrayList<Item> sale;
 
-    public Item(String n, int c, int q) {
+    public Item(String n, double c, int q) {
         name = n;
         cost = c;
         quantity = q;
@@ -25,6 +25,6 @@ public class Item {
     private void setCost(Item item) {
         item.cost = item.cost * .9;
     }
+}
 
-    }
 

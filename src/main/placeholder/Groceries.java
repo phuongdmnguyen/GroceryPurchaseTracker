@@ -18,12 +18,12 @@ public class Groceries {
         String iquantity = "";
 
         while (true) {
-            System.out.println("Please input your item's name or quit");
+            System.out.println("Input item's name/quit");
             iname = scanner.nextLine();
-            System.out.println("Please input your item's cost");
+            System.out.println("Input item's cost");
             icost = scanner.nextLine();
-            int ic = Integer.parseInt(icost);
-            System.out.println("Please input your item's quantity");
+            double ic = Double.parseDouble(icost);
+            System.out.println("Input item's quantity");
             iquantity = scanner.nextLine();
             int iq = Integer.parseInt(iquantity);
             Item item = new Item(iname, ic, iq);
