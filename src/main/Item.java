@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 
 public class Item {
-    static String name; // name of item
+    String name; // name of item
     double cost; // cost per item
     int quantity; // amount bought
     int calorie; // "sale" or normal
