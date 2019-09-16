@@ -4,32 +4,36 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Groceries {
-    private ArrayList<Item> groceries;
     private Scanner scanner;
 
     public Groceries() {
-        groceries = new ArrayList<Item>();
+        ArrayList<Item> groceries = new ArrayList<Item>();
         scanner = new Scanner(System.in);
         processGroceries();
     }
 
     private void processGroceries() {
         String iname = "";
+        String icost = "";
+        String iquantity = "";
 
         while (true) {
             System.out.println("Please input your item's name or quit");
             iname = scanner.nextLine();
+            System.out.println("Please input your item's cost");
+            icost = scanner.nextLine();
+            int ic = Integer.parseInt(icost);
+            System.out.println("Please input your item's quantity");
+            iquantity = scanner.nextLine();
+            int iq = Integer.parseInt(iquantity);
+            Item item = new Item(iname, ic, iq);
 
-            Item item = new Item(iname);
-
-            if (iname.equals("quit")) {
+            if (iname.equals("quits")) {
                 break;
             }
 
-            System.out.println(iname);
+            System.out.println("end");
         }
-
-        System.out.println("end here!");
     }
 
 
@@ -41,8 +45,8 @@ public class Groceries {
         return sum;
     }
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
         processGroceries();
-        getTotal();
+        getTotal(groceries);
     }
 }
