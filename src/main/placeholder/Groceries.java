@@ -10,6 +10,7 @@ public class Groceries {
         ArrayList<Item> groceries = new ArrayList<Item>();
         scanner = new Scanner(System.in);
         processGroceries();
+        getTotal(groceries);
     }
 
     private void processGroceries() {
