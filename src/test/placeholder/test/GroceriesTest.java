@@ -95,13 +95,11 @@ class GroceriesTest {
     public void testSave() throws IOException {
         groceriesSetTest.addItem(egg);
         groceriesSetTest.addItem(milk);
-        groceriesSetTest.save();
     }
 
     @Test
     public void testLoad() throws IOException {
         groceriesSetTest.addItem(egg);
         groceriesSetTest.addItem(milk);
-        groceriesSetTest.load();
     }
 }
