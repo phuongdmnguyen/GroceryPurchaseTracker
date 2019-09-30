@@ -103,5 +103,5 @@ class GroceriesTest {
         groceriesSetTest.addItem(egg);
         groceriesSetTest.addItem(milk);
         groceriesSetTest.load();
-
+    }
 }

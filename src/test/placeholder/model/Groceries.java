@@ -66,21 +66,16 @@ public class Groceries implements GrocEntry{
         return groceries.size();
     }
 
-    public void load() {
-
+    public void load() throws IOException {
+        FileInputStream saveFile = new FileInputStream("saveFile.sav");
+        ObjectInputStream restore = new ObjectInputStream(saveFile);
     }
 
     public void save() throws IOException {
-        List<String> lines = Files.readAllLines(Paths.get("inputfile.txt"));;
-        PrintWriter writer = new PrintWriter("outputfile.txt","UTF-8");
-        lines.add("Groceries list:");
-        for (String line : lines){
-            ArrayList<String> partsOfLine = splitOnSpace(line);
-            System.out.print("Name: "+partsOfLine.get(0)+" ");
-            System.out.println("Role: "+partsOfLine.get(1));
-            writer.println(line);
-        }
-        writer.close(); //note -- if you miss this, the file will not be written at all.
+        FileOutputStream saveFile = new FileOutputStream("saveFile.sav");
+        ObjectOutputStream save = new ObjectOutputStream(saveFile);
+        save.writeObject(save);
+        save.close();
     }
 
 

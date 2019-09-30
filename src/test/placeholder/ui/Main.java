@@ -30,25 +30,3 @@ public class Main {
         processGroceries();
     }
 }
-//    @Override
-//    public void load() {
-//        try {
-//            FileInputStream saveFile = new FileInputStream("saveFile.sav");
-//            ObjectInputStream restore = new ObjectInputStream(saveFile);
-//            Object obj = restore.readObject();
-//        } catch (java.io.FileNotFoundException e) {
-//            System.out.println("This is cursed code");
-//        } catch (java.lang.ClassNotFoundException e) {
-//            System.out.println("Unhelpful Shit");
-//        } catch (java.io.IOException e) {
-//            System.out.println("Sex and Drujs");
-//        }
-//    }
-//
-//    @Override
-//    public static void save() throws IOException {
-//        FileWriter fileWriter = new FileWriter(("fileName"));
-//        PrintWriter printWriter = new PrintWriter((fileWriter));
-//        printWriter.print("The total cost of this trip: " + groceries.getTotalCost() + " dollars");
-//    }
-//}
