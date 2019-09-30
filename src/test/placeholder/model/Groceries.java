@@ -69,15 +69,17 @@ public class Groceries implements GrocEntry{
     public void load() throws IOException {
         FileInputStream saveFile = new FileInputStream("saveFile.sav");
         ObjectInputStream restore = new ObjectInputStream(saveFile);
+        restore.readUTF();
+        restore.close();
+        System.out.println("Yay File loaded");
     }
 
     public void save() throws IOException {
         FileOutputStream saveFile = new FileOutputStream("saveFile.sav");
-        ObjectOutputStream save = new ObjectOutputStream(saveFile);
-        save.writeObject(save);
-        save.close();
+        ObjectOutputStream output = new ObjectOutputStream(new BufferedOutputStream(saveFile));
+        output.writeUTF(String.valueOf(groceries));
+        output.close();
     }
-
 
     public static ArrayList<String> splitOnSpace(String line){
         String[] splits = line.split(" ");
