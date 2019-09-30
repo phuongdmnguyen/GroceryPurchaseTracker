@@ -99,7 +99,7 @@ class GroceriesTest {
     }
 
     @Test
-    public void testLoad() {
+    public void testLoad() throws IOException {
         groceriesSetTest.addItem(egg);
         groceriesSetTest.addItem(milk);
         groceriesSetTest.load();
