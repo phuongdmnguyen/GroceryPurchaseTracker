@@ -6,15 +6,15 @@ import placeholder.model.Groceries;
 import placeholder.model.Item;
 import placeholder.model.PersonalLists;
 
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class GroceriesTest {
     private Groceries groceriesSetTest;
     private PersonalLists musthavesSetTest;
-    private Integer budget;
     private Item egg;
     private Item milk;
-    private Item chickenbreast;
     private Groceries shoppinglistSetTest;
 
     @BeforeEach
@@ -22,16 +22,14 @@ class GroceriesTest {
         groceriesSetTest = new Groceries();
         musthavesSetTest = new PersonalLists();
         shoppinglistSetTest = new Groceries();
-        budget = 60;
-        Item egg = new Item("egg",3,1);
-        Item milk = new Item("milk",5,2);
-        Item chickenbreast = new Item("chicken breast",10,1);
-
+        egg = new Item("egg",3,1);
+        milk = new Item("milk",5,2);
     }
 
     @Test
     public void testgetItemCost() {
-        assertEquals(10, egg.getItemTotalCost());
+        assertEquals(3, egg.getItemTotalCost());
+        assertEquals(10,milk.getItemTotalCost());
     }
 
     @Test
@@ -48,6 +46,7 @@ class GroceriesTest {
         groceriesSetTest.addItem(milk);
         assertTrue(groceriesSetTest.isWithinBudget());
         Item chocolate = new Item("chocolate", 60,1);
+        groceriesSetTest.addItem(chocolate);
         assertFalse(groceriesSetTest.isWithinBudget());
     }
 
@@ -68,10 +67,7 @@ class GroceriesTest {
         groceriesSetTest.addItem(milk);
         musthavesSetTest.addItem(egg);
         musthavesSetTest.addItem(milk);
-        shoppinglistSetTest.addItem(egg);
-        shoppinglistSetTest.addItem(milk);
         Groceries sl = groceriesSetTest.isContainMustHaves(musthavesSetTest);
-        assertEquals(shoppinglistSetTest, sl);
         assertEquals(shoppinglistSetTest.size(),sl.countItem());
     }
 
@@ -82,7 +78,6 @@ class GroceriesTest {
         musthavesSetTest.addItem(milk);
         shoppinglistSetTest.addItem(milk);
         Groceries sl = groceriesSetTest.isContainMustHaves(musthavesSetTest);
-        assertEquals(shoppinglistSetTest, sl);
         assertEquals(shoppinglistSetTest.size(),sl.countItem());
     }
 
@@ -93,8 +88,20 @@ class GroceriesTest {
         shoppinglistSetTest.addItem(egg);
         shoppinglistSetTest.addItem(milk);
         Groceries sl = groceriesSetTest.isContainMustHaves(musthavesSetTest);
-        assertEquals(shoppinglistSetTest, sl);
         assertEquals(shoppinglistSetTest.size(),sl.countItem());
     }
+
+    @Test
+    public void testSave() throws IOException {
+        groceriesSetTest.addItem(egg);
+        groceriesSetTest.addItem(milk);
+        groceriesSetTest.save();
+    }
+
+    @Test
+    public void testLoad() {
+        groceriesSetTest.addItem(egg);
+        groceriesSetTest.addItem(milk);
+        groceriesSetTest.load();
 
 }

@@ -1,20 +1,21 @@
 package placeholder.model;
 
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Arrays;
+import java.util.List;
 
 
-public class Groceries {
-    private Scanner scanner;
+public class Groceries implements GrocEntry{
     private ArrayList<Item> groceries;
-    private int budget;
+    public int BUDGET = 60;
+
 
 
     public Groceries() {
         groceries = new ArrayList<>();
-        scanner = new Scanner(System.in);
-        budget = 60;
-        //processGroceries();
         getTotalCost();
         isWithinBudget();
     }
@@ -32,7 +33,7 @@ public class Groceries {
     //REQUIRES: getTotalCost and budget must be > 0
     //EFFECTS: return true if total cost of one trip of groceries is <= budget
     public boolean isWithinBudget() {
-       if (getTotalCost() <= budget) {
+       if (getTotalCost() <= BUDGET) {
            return true;
        }
         return false;
@@ -44,52 +45,52 @@ public class Groceries {
         return groceries.size();
     }
 
+    //EFFECTS: if groceries doesn't contain items in must haves, add to shoppingList
+    // return shopping list
     public Groceries isContainMustHaves(PersonalLists mh){
         Groceries shoppinglist = new Groceries();
         for (Item i: mh.getMustHaves()){
-            if (groceries.contains(i)){
-                return shoppinglist;
+            if (!groceries.contains(i)){
+                shoppinglist.addItem(i);
             }
-            shoppinglist.addItem(i);
         }
         return shoppinglist;
     }
 
-    private void processGroceries() {
-
-        String iname = "";
-        String icost = "";
-        String iquantity = "";
-
-        while (true) {
-            System.out.println("Input item's name/quit");
-            iname = scanner.nextLine();
-            System.out.println("Input item's cost");
-            icost = scanner.nextLine();
-            double ic = Double.parseDouble(icost);
-            System.out.println("Input item's quantity");
-            iquantity = scanner.nextLine();
-            int iq = Integer.parseInt(iquantity);
-            Item item = new Item(iname, ic, iq);
-
-            if (iname.equals("quits")) {
-                break;
-            }
-
-            System.out.println("end");
-        }
-    }
 
     public void addItem(Item item) {
         groceries.add(item);
     }
 
-    /*public static void main(String[] args) {
-        new Groceries();;
-    }
-     */
-
     public int size() {
         return groceries.size();
+    }
+
+    public void load() {
+
+    }
+
+    public void save() throws IOException {
+        List<String> lines = Files.readAllLines(Paths.get("inputfile.txt"));;
+        PrintWriter writer = new PrintWriter("outputfile.txt","UTF-8");
+        lines.add("Groceries list:");
+        for (String line : lines){
+            ArrayList<String> partsOfLine = splitOnSpace(line);
+            System.out.print("Name: "+partsOfLine.get(0)+" ");
+            System.out.println("Role: "+partsOfLine.get(1));
+            writer.println(line);
+        }
+        writer.close(); //note -- if you miss this, the file will not be written at all.
+    }
+
+
+    public static ArrayList<String> splitOnSpace(String line){
+        String[] splits = line.split(" ");
+        return new ArrayList<>(Arrays.asList(splits));
+    }
+
+    @Override
+    public void date() {
+        System.out.println("Shopping was done on");
     }
 }
