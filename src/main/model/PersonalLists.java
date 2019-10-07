@@ -1,4 +1,4 @@
-package placeholder.model;
+package model;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ public class PersonalLists {
         mh.remove(i);
     }
 
-    public ArrayList<Item> getMustHaves(){
+    public ArrayList<Item> getMustHaves() {
         return this.mh;
     }
 

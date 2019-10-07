@@ -1,4 +1,4 @@
-package placeholder.model;
+package model;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -8,16 +8,12 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class Groceries implements GrocEntry{
-    private ArrayList<Item> groceries;
-    public int BUDGET = 60;
-
-
+public class Groceries implements Savable, Loadable {
+    protected ArrayList<Item> groceries;
+    public static int BUDGET = 60;
 
     public Groceries() {
         groceries = new ArrayList<>();
-        getTotalCost();
-        isWithinBudget();
     }
 
     //REQUIRES: groceries cannot be empty
@@ -33,24 +29,21 @@ public class Groceries implements GrocEntry{
     //REQUIRES: getTotalCost and budget must be > 0
     //EFFECTS: return true if total cost of one trip of groceries is <= budget
     public boolean isWithinBudget() {
-       if (getTotalCost() <= BUDGET) {
-           return true;
-       }
-        return false;
+        return getTotalCost() <= BUDGET;
     }
 
     //REQUIRES: groceries must not be empty
     //EFFECTS: count number of items in one trip of groceries
-    public int countItem(){
+    public int countItem() {
         return groceries.size();
     }
 
     //EFFECTS: if groceries doesn't contain items in must haves, add to shoppingList
     // return shopping list
-    public Groceries isContainMustHaves(PersonalLists mh){
+    public Groceries isContainMustHaves(PersonalLists mh) {
         Groceries shoppinglist = new Groceries();
-        for (Item i: mh.getMustHaves()){
-            if (!groceries.contains(i)){
+        for (Item i : mh.getMustHaves()) {
+            if (!groceries.contains(i)) {
                 shoppinglist.addItem(i);
             }
         }
@@ -66,6 +59,12 @@ public class Groceries implements GrocEntry{
         return groceries.size();
     }
 
+    public void itemExpired() {
+        for (Item i : groceries) {
+            i.itemExpired();
+        }
+    }
+
     public void load() throws IOException {
         FileInputStream saveFile = new FileInputStream("saveFile.sav");
         ObjectInputStream restore = new ObjectInputStream(saveFile);
@@ -74,20 +73,15 @@ public class Groceries implements GrocEntry{
         System.out.println("Yay File loaded");
     }
 
-    public void save() throws IOException {
-        FileOutputStream saveFile = new FileOutputStream("saveFile.sav");
-        ObjectOutputStream output = new ObjectOutputStream(new BufferedOutputStream(saveFile));
-        output.writeUTF(String.valueOf(groceries));
-        output.close();
-    }
-
-    public static ArrayList<String> splitOnSpace(String line){
-        String[] splits = line.split(" ");
-        return new ArrayList<>(Arrays.asList(splits));
-    }
-
     @Override
-    public void date() {
-        System.out.println("Shopping was done on");
+    public void save() throws IOException {
+        PrintWriter writer = new PrintWriter("grocOutput.txt", "UTF-8");
+        for (Item i : groceries) {
+            writer.print(i.getItemName() + " ");
+            writer.print("quantity: " + i.getItemQuantity() + "; ");
+            writer.print("total cost:" + i.getItemTotalCost() + "; ");
+            writer.println(" ");
+        }
+        writer.close();
     }
 }
