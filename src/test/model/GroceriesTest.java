@@ -89,6 +89,20 @@ class GroceriesTest {
     }
 
     @Test
+    public void testMeatExpiry() {
+        groceriesSetTest.addItem(beef);
+        groceriesSetTest.itemExpired();
+        assertFalse(beef.expiryStatus);
+    }
+
+    @Test
+    public void testProduceExpiry() {
+        groceriesSetTest.addItem(carrot);
+        groceriesSetTest.itemExpired();
+        assertFalse(carrot.expiryStatus);
+    }
+
+    @Test
     public void testSave() throws IOException {
         groceriesSetTest.addItem(beef);
         groceriesSetTest.save();
