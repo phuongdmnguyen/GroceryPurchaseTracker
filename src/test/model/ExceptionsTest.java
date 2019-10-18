@@ -29,11 +29,7 @@ public class ExceptionsTest {
 
     @Test
     public void isWithinBudgetTestNoException() {
-        try {
-            groceriesListSetTest.isWithinBudget();
-        } catch (NoBudgetException e) {
-            fail();
-        }
+        groceriesListSetTest.isWithinBudget();
     }
 
 }
