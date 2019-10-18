@@ -12,6 +12,10 @@ public abstract class PersonalLists {
         itemsList = new ArrayList<>();
     }
 
+    public void setBudget(int budget) {
+        this.budget = budget;
+    }
+
     public void addItem(Item i) {
         itemsList.add(i);
     }

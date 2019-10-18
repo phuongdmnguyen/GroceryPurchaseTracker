@@ -17,6 +17,7 @@ public class ExceptionsTest {
         groceriesListSetTest = new GroceriesList();
         musthavesSetTest = new MustHaveList();
     }
+
     @Test
     public void isContainMustHaveExceptionTest() {
         try {
@@ -29,7 +30,14 @@ public class ExceptionsTest {
 
     @Test
     public void isWithinBudgetTestNoException() {
-        groceriesListSetTest.isWithinBudget();
+        groceriesListSetTest.setBudget(10);
+        try {
+            groceriesListSetTest.isContainMustHaves(musthavesSetTest);
+        } catch (BudgetReachedException e) {
+            fail("Caught exception not supposed to catch");
+        } catch (NoBudgetException e) {
+            fail("Exception thrown when shouldn't have");
+        }
     }
-
 }
+
