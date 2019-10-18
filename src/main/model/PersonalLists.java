@@ -1,27 +1,31 @@
 package model;
 
+import model.Items.Item;
+
 import java.util.ArrayList;
 
-public class PersonalLists {
-    private ArrayList<Item> mh;
+public abstract class PersonalLists {
+    protected ArrayList<Item> itemsList;
+    protected int budget;
 
     public PersonalLists() {
-        mh = new ArrayList<Item>();
+        itemsList = new ArrayList<>();
     }
 
-    public void insertMustHave(Item i) {
-        mh.add(i);
+    public void addItem(Item i) {
+        itemsList.add(i);
     }
 
-    public void removeMustHave(Item i) {
-        mh.remove(i);
+    public void removeItem(Item i) {
+        itemsList.remove(i);
     }
 
-    public ArrayList<Item> getMustHaves() {
-        return this.mh;
+    public ArrayList<Item> getList() {
+        return itemsList;
     }
 
-    public void addItem(Item item) {
-        mh.add(item);
+    public int size() {
+        return itemsList.size();
     }
+
 }
