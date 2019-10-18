@@ -1,6 +1,6 @@
 package model;
 
-import model.Items.Item;
+import model.items.Item;
 
 import java.io.IOException;
 

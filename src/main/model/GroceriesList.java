@@ -1,11 +1,10 @@
 package model;
 
-import model.Exceptions.BudgetReachedException;
-import model.Exceptions.NoBudgetException;
-import model.Items.Item;
+import model.exceptions.BudgetReachedException;
+import model.exceptions.NoBudgetException;
+import model.items.Item;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 

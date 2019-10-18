@@ -1,4 +1,4 @@
-package model.Items;
+package model.items;
 
 public class Produce extends Item {
 

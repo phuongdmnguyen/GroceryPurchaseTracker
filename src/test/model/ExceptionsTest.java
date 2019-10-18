@@ -1,7 +1,7 @@
 package model;
 
-import model.Exceptions.BudgetReachedException;
-import model.Exceptions.NoBudgetException;
+import model.exceptions.BudgetReachedException;
+import model.exceptions.NoBudgetException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

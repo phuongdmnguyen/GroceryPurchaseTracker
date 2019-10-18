@@ -1,10 +1,10 @@
 package model;
 
-import model.Exceptions.BudgetReachedException;
-import model.Exceptions.NoBudgetException;
-import model.Items.Item;
-import model.Items.Meat;
-import model.Items.Produce;
+import model.exceptions.BudgetReachedException;
+import model.exceptions.NoBudgetException;
+import model.items.Item;
+import model.items.Meat;
+import model.items.Produce;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

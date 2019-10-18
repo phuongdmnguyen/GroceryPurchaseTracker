@@ -1,6 +1,4 @@
-package model.Items;
-
-import java.util.ArrayList;
+package model.items;
 
 public abstract class Item {
     protected String name; // name of item

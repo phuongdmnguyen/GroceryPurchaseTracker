@@ -1,13 +1,11 @@
 package ui;
 
-import model.Exceptions.BudgetIssuesException;
-import model.Exceptions.BudgetReachedException;
-import model.Exceptions.NoBudgetException;
+import model.exceptions.BudgetIssuesException;
+import model.exceptions.NoBudgetException;
 import model.GroceriesList;
-import model.Items.*;
+import model.items.*;
 import model.MustHaveList;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class UserInterface {
