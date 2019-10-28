@@ -13,6 +13,7 @@ import java.util.Scanner;
 
 public class GroceriesList extends PersonalLists {
     private Map<String, ArrayList<Item>> allItemsInCategory = new HashMap<>();
+    private MustHaveList mustHaveList;
     //general items categorized by its category
 
     public GroceriesList() { }
@@ -52,7 +53,7 @@ public class GroceriesList extends PersonalLists {
         }
         GroceriesList shoppinglist = new GroceriesList();
         for (Item i : mh.itemsList) {
-            if (!itemsList.contains(i)) {
+            if (!itemsList.contains(i.getItemName())) {
                 shoppinglist.addItem(i);
             }
         }

@@ -7,11 +7,11 @@ import java.util.ArrayList;
 
 public class MustHaveList extends PersonalLists {
     protected ArrayList<String> listOfMustHaves;
-    protected PersonalSettings personalSettings;
+    protected GroceriesList groceriesList;
 
     public MustHaveList() {
         listOfMustHaves = new ArrayList<>();
-        personalSettings = new PersonalSettings();
+        groceriesList = new GroceriesList();
     }
 
     public void addItemToMHList(String item) {
