@@ -1,7 +1,21 @@
 package model;
 
-public class MustHaveList extends PersonalLists {
+import model.items.Item;
+import ui.PersonalSettings;
 
-    public MustHaveList() {}
+import java.util.ArrayList;
+
+public class MustHaveList extends PersonalLists {
+    protected ArrayList<String> listOfMustHaves;
+    protected PersonalSettings personalSettings;
+
+    public MustHaveList() {
+        listOfMustHaves = new ArrayList<>();
+        personalSettings = new PersonalSettings();
+    }
+
+    public void addItemToMHList(String item) {
+        listOfMustHaves.add(item);
+    }
 
 }

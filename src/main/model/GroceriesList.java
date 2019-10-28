@@ -5,10 +5,15 @@ import model.exceptions.NoBudgetException;
 import model.items.Item;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 
 public class GroceriesList extends PersonalLists {
+    private Map<String, ArrayList<Item>> allItemsInCategory = new HashMap<>();
+    //general items categorized by its category
 
     public GroceriesList() { }
 
@@ -53,6 +58,11 @@ public class GroceriesList extends PersonalLists {
         }
         return shoppinglist;
     }
+
+    public void getItemsInOneCategory(String category) {
+        allItemsInCategory.get(category);
+    }
+
 
 
     public Item load() throws IOException {

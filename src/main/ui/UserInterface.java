@@ -6,16 +6,20 @@ import model.GroceriesList;
 import model.items.*;
 import model.MustHaveList;
 
+import javax.sound.midi.Soundbank;
 import java.util.Scanner;
 
 public class UserInterface {
     private static GroceriesList groceriesList;
     private static MustHaveList mustHaveList;
+    private static PersonalSettings personalSettings;
     private static Scanner myObj;
 
     protected static void processGroceries() {
         init();
-        displayMenu();
+        displayChoices();
+        userInputChoices();
+        displayGroceryTripMenu();
         addUserInputToGroceries();
         checkGroceryListSufficient();
         System.out.println("The total cost of this trip: " + groceriesList.getTotalCost() + " dollars");
@@ -25,9 +29,10 @@ public class UserInterface {
         groceriesList = new GroceriesList();
         mustHaveList = new MustHaveList();
         myObj = new Scanner(System.in);
+        personalSettings = new PersonalSettings();
     }
 
-    public static void displayMenu() {
+    public static void displayGroceryTripMenu() {
         System.out.println("\nSelect from category:");
         System.out.println("\tm -> meat");
         System.out.println("\tg -> grocery");
@@ -36,12 +41,38 @@ public class UserInterface {
         System.out.println("\tq -> quit");
     }
 
+    public static void displayChoices() {
+        System.out.println("\nChoose things to do:");
+        System.out.println("\tbudget -> set personal budget");
+        System.out.println("\tmusthave -> add items to must have list");
+        System.out.println("\tgrocery -> add a grocery trip");
+        System.out.println("\tcheckgroc -> check items in one category");
+    }
 
-    protected static void addUserInputToGroceries() {
-        String command = null;
+    public static void userInputChoices() {
+        String command;
 
         while (true) {
-            displayMenu();
+            displayChoices();
+            command = myObj.next();
+            command = command.toLowerCase();
+
+            if (command.equals("budget")) {
+                setPersonalBudget();
+            } else if (command.equals("musthave")) {
+                addToMustHave();
+            } else if (command.equals("checkgroc")) {
+                checkGroceryList("Item");
+            }
+        }
+    }
+
+
+    protected static void addUserInputToGroceries() {
+        String command;
+
+        while (true) {
+            displayGroceryTripMenu();
             command = myObj.next();
             command = command.toLowerCase();
 
@@ -115,6 +146,22 @@ public class UserInterface {
         } finally {
             System.out.println("All good");
         }
+    }
+
+    public static void setPersonalBudget() {
+        System.out.println("Enter your budget:");
+        double myBudget = myObj.nextDouble();
+        personalSettings.setBudget(myBudget);
+    }
+
+    public static void addToMustHave() {
+        System.out.println("Add items to your must have list!");
+        String mustHaveItem = myObj.next();
+        personalSettings.addMustHaves(mustHaveItem);
+    }
+
+    public static void checkGroceryList(String category) {
+        groceriesList.getItemsInOneCategory(category);
     }
 
     public static void main(String[] args) {

@@ -25,6 +25,7 @@ public class ExceptionsTest {
             fail();
         } catch (NoBudgetException e) {
         } catch (BudgetReachedException e) {
+            fail();
         }
     }
 
