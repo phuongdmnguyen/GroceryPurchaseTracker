@@ -1,7 +1,16 @@
 package model.items;
 
+import java.util.ArrayList;
+
 public class Grocery extends Item {
-    public Grocery(String n, double c, int q) {
-        super(n, c, q);
+
+
+    public Grocery(String n) {
+        super(n, "Grocery");
+    }
+
+    @Override
+    public void putItemIntoCategory(Item item) {
+        categorizedItems.put("Grocery",item);
     }
 }

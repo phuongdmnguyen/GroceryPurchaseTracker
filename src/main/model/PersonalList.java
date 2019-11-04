@@ -4,11 +4,11 @@ import model.items.Item;
 
 import java.util.ArrayList;
 
-public abstract class PersonalLists {
+public abstract class PersonalList {
     protected ArrayList<Item> itemsList;
     protected int budget;
 
-    public PersonalLists() {
+    public PersonalList() {
         itemsList = new ArrayList<>();
     }
 
@@ -17,16 +17,19 @@ public abstract class PersonalLists {
     }
 
     public void addItem(Item i) {
-        itemsList.add(i);
+        if (!itemsList.contains(i)) {
+            itemsList.add(i);
+            i.assignToList(this);
+        }
     }
 
-    public void removeItem(Item i) {
-        itemsList.remove(i);
-    }
-
-    public ArrayList<Item> getList() {
-        return itemsList;
-    }
+//    public void removeItem(Item i) {
+//        itemsList.remove(i);
+//    }
+//
+//    public ArrayList<Item> getList() {
+//        return itemsList;
+//    }
 
     public int size() {
         return itemsList.size();

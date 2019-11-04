@@ -1,5 +1,9 @@
 package model.items;
 
+import model.PersonalList;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 public abstract class Item {
@@ -7,13 +11,25 @@ public abstract class Item {
     protected String category;//category if Item
     protected double cost; // cost per item
     protected int quantity; // amount bought
+    private ArrayList<PersonalList> personalLists; //item is part of a personalList
 
+    protected HashMap<String,Item> categorizedItems;
 
-    public Item(String n, double c, int q) {
+    public Item(String n, String category) {
         name = n;
-        cost = c;
-        quantity = q;
+        this.category = category;
+        cost = 0.0;
+        quantity = 0;
+        personalLists = new ArrayList<>();
+        categorizedItems = new HashMap<>();
+    }
 
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public String getItemName() {
@@ -32,6 +48,20 @@ public abstract class Item {
         return quantity;
     }
 
+    public ArrayList<PersonalList> getPersonalLists() {
+        return personalLists;
+    }
+
+
+    public void assignToList(PersonalList personalList) {
+        if (!this.personalLists.contains(personalList)) {
+            this.personalLists.add(personalList);
+            personalList.addItem(this);
+        }
+    }
+
+    public abstract void putItemIntoCategory(Item item);
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -42,13 +72,12 @@ public abstract class Item {
         }
         Item item = (Item) o;
         return Double.compare(item.cost, cost) == 0
-                && quantity == item.quantity
                 && name.equals(item.name)
                 && category.equals(item.category);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, category, cost, quantity);
+        return Objects.hash(name, category, cost);
     }
 }

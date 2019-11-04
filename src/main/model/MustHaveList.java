@@ -1,11 +1,8 @@
 package model;
 
-import model.items.Item;
-import ui.PersonalSettings;
-
 import java.util.ArrayList;
 
-public class MustHaveList extends PersonalLists {
+public class MustHaveList extends PersonalList {
     protected ArrayList<String> listOfMustHaves;
     protected GroceriesList groceriesList;
 

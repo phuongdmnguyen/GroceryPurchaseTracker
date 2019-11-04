@@ -2,6 +2,7 @@ package model;
 
 import model.exceptions.BudgetReachedException;
 import model.exceptions.NoBudgetException;
+import model.items.Grocery;
 import model.items.Item;
 import model.items.Meat;
 import model.items.Produce;
@@ -26,8 +27,12 @@ class GroceriesListTest {
         groceriesListSetTest = new GroceriesList();
         musthavesSetTest = new MustHaveList();
         shoppinglistSetTest = new GroceriesList();
-        beef = new Meat("beef", 3, 1);
-        carrot = new Produce("carrot", 5, 2);
+        beef = new Meat("beef");
+        beef.setCost(3);
+        beef.setQuantity(1);
+        carrot = new Produce("carrot");
+        carrot.setCost(5);
+        carrot.setQuantity(2);
         personalSettings = new PersonalSettings();
     }
 
@@ -50,7 +55,9 @@ class GroceriesListTest {
         groceriesListSetTest.addItem(beef);
         groceriesListSetTest.addItem(carrot);
         assertTrue(groceriesListSetTest.isWithinBudget());
-        Item chocolate = new Meat("chicken", 60, 1);
+        Item chocolate = new Grocery("chocolate");
+        chocolate.setCost(60);
+        chocolate.setQuantity(1);
         groceriesListSetTest.addItem(chocolate);
         assertFalse(groceriesListSetTest.isWithinBudget());
     }
@@ -135,11 +142,11 @@ class GroceriesListTest {
         }
 
 
-        @Test
-        public void testSave () throws IOException {
-            groceriesListSetTest.addItem(beef);
-            groceriesListSetTest.save();
-
-            assertEquals(beef, groceriesListSetTest.load());
-        }
+//        @Test
+//        public void testSave () throws IOException {
+//            groceriesListSetTest.addItem(beef);
+//            groceriesListSetTest.save();
+//
+//            assertEquals(beef, groceriesListSetTest.load());
+//        }
     }
