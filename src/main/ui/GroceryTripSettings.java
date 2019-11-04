@@ -5,6 +5,10 @@ import model.exceptions.BudgetIssuesException;
 import model.exceptions.NoBudgetException;
 import model.items.*;
 
+import java.io.IOException;
+
+import static ui.UserInterface.userInputChoices;
+
 public class GroceryTripSettings {
     static GroceriesList groceriesList;
 
@@ -17,7 +21,7 @@ public class GroceryTripSettings {
         System.out.println("\tq -> quit");
     }
 
-    protected static void addUserInputToGroceries() {
+    protected static void addUserInputToGroceries() throws IOException {
         String command;
 
         while (true) {
@@ -34,10 +38,9 @@ public class GroceryTripSettings {
             } else if (command.equals("h")) {
                 addHouseholdItem();
             } else if (command.equals("q")) {
-                break;
+                userInputChoices();
             }
         }
-        System.out.println("\nGoodbye!");
     }
 
     public static void addMeat() {
@@ -92,15 +95,15 @@ public class GroceryTripSettings {
         itemSetUp(icost, iquantity, item);
     }
 
-    public static void checkGroceryListSufficient() {
-        try {
-            groceriesList.isContainMustHaves(UserInterface.mustHaveList);
-        } catch (NoBudgetException e) {
-            System.out.println("Please set budget before proceeding");
-        } catch (BudgetIssuesException e) {
-            System.out.println("There is some budget issues");
-        } finally {
-            System.out.println("All good");
-        }
-    }
+//    public static void checkGroceryListSufficient() {
+//        try {
+//            groceriesList.isContainMustHaves(UserInterface.mustHaveList);
+//        } catch (NoBudgetException e) {
+//            System.out.println("Please set budget before proceeding");
+//        } catch (BudgetIssuesException e) {
+//            System.out.println("There is some budget issues");
+//        } finally {
+//            System.out.println("All good");
+//        }
+//    }
 }

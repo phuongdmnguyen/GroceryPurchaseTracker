@@ -142,11 +142,10 @@ class GroceriesListTest {
         }
 
 
-//        @Test
-//        public void testSave () throws IOException {
-//            groceriesListSetTest.addItem(beef);
-//            groceriesListSetTest.save();
-//
-//            assertEquals(beef, groceriesListSetTest.load());
-//        }
+        @Test
+        public void testSave () throws IOException {
+            groceriesListSetTest.addItem(beef);
+            groceriesListSetTest.save();
+            assertEquals(beef, groceriesListSetTest.load());
+        }
     }

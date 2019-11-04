@@ -3,6 +3,7 @@ package ui;
 import model.GroceriesList;
 import model.MustHaveList;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -10,12 +11,9 @@ public class UserInterface {
     private static PersonalSettings personalSettings;
     protected static Scanner myObj;
 
-    protected static void processGroceries() {
+    protected static void processGroceries() throws IOException {
         init();
         userInputChoices();
-        GroceryTripSettings.displayGroceryTripMenu();
-        GroceryTripSettings.addUserInputToGroceries();
-        GroceryTripSettings.checkGroceryListSufficient();
     }
 
     public static void init() {
@@ -34,7 +32,7 @@ public class UserInterface {
         System.out.println("\tquit -> quit application");
     }
 
-    public static void userInputChoices() {
+    public static void userInputChoices() throws IOException {
         String command;
 
         while (true) {
@@ -51,6 +49,7 @@ public class UserInterface {
             } else if (command.equals("quit")) {
                 System.out.println("The total cost of this trip: "
                         + GroceryTripSettings.groceriesList.getTotalCost() + " dollars");
+                GroceryTripSettings.groceriesList.save();
                 break;
             }
         }
@@ -70,7 +69,7 @@ public class UserInterface {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         processGroceries();
     }
 

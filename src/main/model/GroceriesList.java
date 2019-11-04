@@ -3,6 +3,7 @@ package model;
 import model.exceptions.BudgetReachedException;
 import model.exceptions.NoBudgetException;
 import model.items.Item;
+import model.items.Meat;
 
 import java.io.*;
 import java.util.Scanner;
@@ -56,28 +57,24 @@ public class GroceriesList extends PersonalList {
     }
 
 
-//    public Item load() throws IOException {
-//        GroceriesList groceriesList = new GroceriesList();
-//        Scanner reader = new Scanner(new File("grocOutput.txt"));
-//        while (reader.hasNextLine()) {
-//            String itemName = reader.nextLine();
-//            double itemCost = reader.nextDouble();
-//            int itemQuantity = reader.nextInt();
-//
-//            Item item = new Item(itemName, itemCost, itemQuantity) {
-//            };
-//            groceriesList.addItem(item);
-//            return item;
-//        }
-//        return null;
-//    }
+    public Item load() throws IOException {
+        GroceriesList groceriesList = new GroceriesList();
+        Scanner reader = new Scanner(new File("grocOutput.txt"));
+        while (reader.hasNextLine()) {
+            String itemName = reader.nextLine();
+
+            Item item = new Meat(itemName) {
+            };
+            groceriesList.addItem(item);
+            return item;
+        }
+        return null;
+    }
 
     public void save() throws IOException {
         PrintWriter writer = new PrintWriter("grocOutput.txt", "UTF-8");
         for (Item i : itemsList) {
             writer.println(i.getItemName());
-            writer.println(i.getItemCost());
-            writer.println(i.getItemQuantity());
             writer.println(" ");
         }
         writer.close();
