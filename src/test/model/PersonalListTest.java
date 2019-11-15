@@ -15,7 +15,8 @@ public class PersonalListTest {
 
     @BeforeEach
     public void runBefore() {
-        personalList = new GroceriesList();
+        ShoppingListMonitor shoppingListMonitor = new ShoppingListMonitor();
+        personalList = new GroceriesList(shoppingListMonitor);
         item1 = new Meat("chicken breasts");
         item1Duplicate = new Meat("chicken breasts");
         item2 = new Meat("frozen pizza");

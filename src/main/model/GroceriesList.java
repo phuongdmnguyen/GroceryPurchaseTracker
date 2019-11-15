@@ -6,13 +6,18 @@ import model.items.Item;
 import model.items.Meat;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
 public class GroceriesList extends PersonalList {
+    protected ArrayList<String> shoppingList;
     //general items categorized by its category
 
-    public GroceriesList() { }
+    public GroceriesList(ShoppingListMonitor shoppingListMonitor) {
+        shoppingList = new ArrayList<>();
+        addObserver(shoppingListMonitor);
+    }
 
 
     //REQUIRES: groceries cannot be empty
@@ -39,7 +44,7 @@ public class GroceriesList extends PersonalList {
 
     //EFFECTS: if groceries doesn't contain items in must haves, add to shoppingList
     // return shopping list
-    public GroceriesList isContainMustHaves(MustHaveList mh) throws BudgetReachedException, NoBudgetException {
+    public ArrayList<String> isContainMustHaves(MustHaveList mh) throws BudgetReachedException, NoBudgetException {
         if (budget < getTotalCost()) {
             throw new BudgetReachedException();
         }
@@ -47,28 +52,38 @@ public class GroceriesList extends PersonalList {
         if (budget == 0) {
             throw new NoBudgetException();
         }
-        GroceriesList shoppinglist = new GroceriesList();
-        for (Item i : mh.itemsList) {
-            if (!itemsList.contains(i.getItemName())) {
-                shoppinglist.addItem(i);
+        ArrayList<String> list = getNamesofItemsInGroceryList(this);
+        for (String i : mh.listOfMustHaves) {
+            if (!list.contains(i)) {
+                shoppingList.add(i);
+                setChanged();
+                notifyObservers();
             }
         }
-        return shoppinglist;
+        System.out.println(shoppingList);
+        return shoppingList;
+    }
+
+    public ArrayList<String> getNamesofItemsInGroceryList(GroceriesList groceriesList) {
+        ArrayList<String> listOfItemNames = new ArrayList<>();
+        for (Item i:groceriesList.itemsList) {
+            String itemName = i.getItemName();
+            listOfItemNames.add(itemName);
+        }
+        return listOfItemNames;
     }
 
 
-    public Item load() throws IOException {
-        GroceriesList groceriesList = new GroceriesList();
+    public ArrayList<Item> load() throws IOException {
         Scanner reader = new Scanner(new File("grocOutput.txt"));
         while (reader.hasNextLine()) {
             String itemName = reader.nextLine();
-
             Item item = new Meat(itemName) {
             };
-            groceriesList.addItem(item);
-            return item;
+            itemsList.add(item);
+            return itemsList;
         }
-        return null;
+        return itemsList;
     }
 
     public void save() throws IOException {

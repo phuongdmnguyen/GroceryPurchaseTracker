@@ -14,7 +14,8 @@ public class ExceptionsTest {
 
     @BeforeEach
     public void runBefore() {
-        groceriesListSetTest = new GroceriesList();
+        ShoppingListMonitor shoppingListMonitor = new ShoppingListMonitor();
+        groceriesListSetTest = new GroceriesList(shoppingListMonitor);
         musthavesSetTest = new MustHaveList();
     }
 

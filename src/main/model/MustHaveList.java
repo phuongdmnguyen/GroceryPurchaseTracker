@@ -2,13 +2,11 @@ package model;
 
 import java.util.ArrayList;
 
-public class MustHaveList extends PersonalList {
+public class MustHaveList {
     protected ArrayList<String> listOfMustHaves;
-    protected GroceriesList groceriesList;
 
     public MustHaveList() {
         listOfMustHaves = new ArrayList<>();
-        groceriesList = new GroceriesList();
     }
 
     public void addItemToMHList(String item) {

@@ -7,6 +7,8 @@ import model.items.Meat;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javax.swing.text.html.StyleSheet;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ItemTest {
@@ -17,12 +19,13 @@ public class ItemTest {
 
     @BeforeEach
     public void runBefore() {
+        ShoppingListMonitor shoppingListMonitor = new ShoppingListMonitor();
         item1 = new Grocery("milk");
         item1.setQuantity(2);
         item1.setCost(4);
         item2 = new Meat("ground beef");
-        personalList = new GroceriesList();
-        personalList1 = new GroceriesList();
+        personalList = new GroceriesList(shoppingListMonitor);
+        personalList1 = new GroceriesList(shoppingListMonitor);
     }
 
     @Test

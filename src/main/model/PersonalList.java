@@ -3,13 +3,15 @@ package model;
 import model.items.Item;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
-public abstract class PersonalList {
+public abstract class PersonalList extends Observable {
     protected ArrayList<Item> itemsList;
-    protected int budget;
+    public int budget;
 
     public PersonalList() {
         itemsList = new ArrayList<>();
+        budget = 0;
     }
 
     public void setBudget(int budget) {

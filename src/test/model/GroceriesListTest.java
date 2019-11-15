@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import ui.PersonalSettings;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,21 +21,20 @@ class GroceriesListTest {
     private MustHaveList musthavesSetTest;
     private Item beef;
     private Item carrot;
-    private GroceriesList shoppinglistSetTest;
-    private PersonalSettings personalSettings;
+    private ArrayList<String> shoppinglistSetTest;
 
     @BeforeEach
     public void runBefore() {
-        groceriesListSetTest = new GroceriesList();
+        ShoppingListMonitor shoppingListMonitor = new ShoppingListMonitor();
+        groceriesListSetTest = new GroceriesList(shoppingListMonitor);
         musthavesSetTest = new MustHaveList();
-        shoppinglistSetTest = new GroceriesList();
+        shoppinglistSetTest = new ArrayList<>();
         beef = new Meat("beef");
         beef.setCost(3);
         beef.setQuantity(1);
         carrot = new Produce("carrot");
         carrot.setCost(5);
         carrot.setQuantity(2);
-        personalSettings = new PersonalSettings();
     }
 
     @Test
@@ -54,6 +55,7 @@ class GroceriesListTest {
     public void testisWithinBudget() {
         groceriesListSetTest.addItem(beef);
         groceriesListSetTest.addItem(carrot);
+        groceriesListSetTest.setBudget(60);
         assertTrue(groceriesListSetTest.isWithinBudget());
         Item chocolate = new Grocery("chocolate");
         chocolate.setCost(60);
@@ -74,49 +76,50 @@ class GroceriesListTest {
     // - groceries contain some items from must have list
     // - groceries contain no items from must have list
     @Test
-    public void testContainAllMustHaves(){
+    public void testContainAllMustHaves() {
         groceriesListSetTest.addItem(beef);
         groceriesListSetTest.addItem(carrot);
-        musthavesSetTest.addItem(beef);
-        musthavesSetTest.addItem(carrot);
+        musthavesSetTest.addItemToMHList("beef");
+        musthavesSetTest.addItemToMHList("carrot");
         try {
-            GroceriesList sl = groceriesListSetTest.isContainMustHaves(musthavesSetTest);
-            assertEquals(shoppinglistSetTest.size(), sl.countItem());
+            ArrayList<String> sl = groceriesListSetTest.isContainMustHaves(musthavesSetTest);
+            assertEquals(0, sl.size());
+            assertEquals("beef", sl.get(0));
 
         } catch (NoBudgetException e) {
-            fail();
+            ;
         } catch (BudgetReachedException e) {
-            fail();
+            ;
         }
     }
 
     @Test
-    public void testContainSomeMustHaves(){
+    public void testContainSomeMustHaves() {
         groceriesListSetTest.addItem(beef);
-        musthavesSetTest.addItem(beef);
-        musthavesSetTest.addItem(carrot);
-        shoppinglistSetTest.addItem(carrot);
+        musthavesSetTest.addItemToMHList("beef");
+        musthavesSetTest.addItemToMHList("carrot");
+        shoppinglistSetTest.add("carrot");
         try {
-            GroceriesList sl = groceriesListSetTest.isContainMustHaves(musthavesSetTest);
-            assertEquals(shoppinglistSetTest.size(), sl.countItem());
+            ArrayList<String> sl = groceriesListSetTest.isContainMustHaves(musthavesSetTest);
+            assertEquals(shoppinglistSetTest.size(), sl.size());
+            assertEquals("carrot", sl.get(0));
 
         } catch (NoBudgetException e) {
-            fail();
         } catch (BudgetReachedException e) {
-            fail();
+            ;
         }
     }
 
     @Test
     public void testContainNoMustHaves() {
-        musthavesSetTest.addItem(beef);
-        musthavesSetTest.addItem(carrot);
-        shoppinglistSetTest.addItem(beef);
-        shoppinglistSetTest.addItem(carrot);
-        personalSettings.setBudget(30);
+        musthavesSetTest.addItemToMHList("beef");
+        musthavesSetTest.addItemToMHList("carrot");
+        shoppinglistSetTest.add("beef");
+        shoppinglistSetTest.add("carrot");
+        groceriesListSetTest.setBudget(30);
         try {
-            GroceriesList sl = groceriesListSetTest.isContainMustHaves(musthavesSetTest);
-            assertEquals(shoppinglistSetTest.size(), sl.countItem());
+            ArrayList<String> sl = groceriesListSetTest.isContainMustHaves(musthavesSetTest);
+            assertEquals(shoppinglistSetTest.size(), sl.size());
 
         } catch (NoBudgetException e) {
             fail();
@@ -125,27 +128,22 @@ class GroceriesListTest {
         }
     }
 
-        @Test
-        public void testIsNotWithinBudget () {
-            shoppinglistSetTest.addItem(beef);
-            shoppinglistSetTest.addItem(carrot);
-            personalSettings.setBudget(10);
-            assertFalse(shoppinglistSetTest.isWithinBudget());
-        }
+    @Test
+    public void testgetNamesofItemsInGroceryList() {
+        groceriesListSetTest.addItem(beef);
+        groceriesListSetTest.addItem(carrot);
+        ArrayList<String> list = groceriesListSetTest.getNamesofItemsInGroceryList(groceriesListSetTest);
+        assertEquals(2,list.size());
+        assertEquals("beef",list.get(0));
+        assertEquals("carrot",list.get(1));
 
-        @Test
-        public void testIsWithinBudget () {
-            shoppinglistSetTest.addItem(beef);
-            shoppinglistSetTest.addItem(carrot);
-            personalSettings.setBudget(20);
-            assertTrue(shoppinglistSetTest.isWithinBudget());
-        }
-
-
-        @Test
-        public void testSave () throws IOException {
-            groceriesListSetTest.addItem(beef);
-            groceriesListSetTest.save();
-            assertEquals(beef, groceriesListSetTest.load());
-        }
     }
+
+
+    @Test
+    public void testSaveAndLoad() throws IOException {
+        groceriesListSetTest.addItem(beef);
+        groceriesListSetTest.save();
+        assertEquals(groceriesListSetTest.itemsList, groceriesListSetTest.load());
+    }
+}

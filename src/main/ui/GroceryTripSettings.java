@@ -4,6 +4,7 @@ import model.GroceriesList;
 import model.exceptions.BudgetIssuesException;
 import model.exceptions.NoBudgetException;
 import model.items.*;
+import org.json.JSONException;
 
 import java.io.IOException;
 
@@ -18,15 +19,15 @@ public class GroceryTripSettings {
         System.out.println("\tg -> grocery");
         System.out.println("\tp -> produce");
         System.out.println("\th -> household item");
-        System.out.println("\tq -> quit");
+        System.out.println("\te -> exit");
     }
 
-    protected static void addUserInputToGroceries() throws IOException {
-        String command;
+    protected static void addUserInputToGroceries() throws IOException, JSONException {
+        boolean keepGoing = true;
 
-        while (true) {
+        while (keepGoing) {
             displayGroceryTripMenu();
-            command = UserInterface.myObj.next();
+            String command = UserInterface.myObj.next();
             command = command.toLowerCase();
 
             if (command.equals("m")) {
@@ -37,10 +38,11 @@ public class GroceryTripSettings {
                 addProduce();
             } else if (command.equals("h")) {
                 addHouseholdItem();
-            } else if (command.equals("q")) {
-                userInputChoices();
+            } else if (command.equals("e")) {
+                keepGoing = false;
             }
         }
+        userInputChoices();
     }
 
     public static void addMeat() {
@@ -95,15 +97,4 @@ public class GroceryTripSettings {
         itemSetUp(icost, iquantity, item);
     }
 
-//    public static void checkGroceryListSufficient() {
-//        try {
-//            groceriesList.isContainMustHaves(UserInterface.mustHaveList);
-//        } catch (NoBudgetException e) {
-//            System.out.println("Please set budget before proceeding");
-//        } catch (BudgetIssuesException e) {
-//            System.out.println("There is some budget issues");
-//        } finally {
-//            System.out.println("All good");
-//        }
-//    }
 }
