@@ -32,6 +32,7 @@ public class GroceryPanel extends Panel {
         return groceriesList;
     }
 
+    //EFFECTS: create tools for adding items
     private void intializeTools() {
         JPanel toolArea = new JPanel();
         toolArea.setLayout(new GridLayout(0,1));
@@ -45,6 +46,7 @@ public class GroceryPanel extends Panel {
         CalculateTripTool calculateTripTool = new CalculateTripTool(this,toolArea);
     }
 
+    //EFFECTS: initialize table and data for this tab panel
     private void initiatlizeData() {
         data = new String[][]{};
 //        groceryTrip = new JTable(data, columnNames);
@@ -53,6 +55,9 @@ public class GroceryPanel extends Panel {
         add(new JScrollPane(groceryTrip));
     }
 
+    //REQUIRES: Item's cost, quantity, and name in string
+    //MODIFIES: this
+    //EFFECTS: add a new row to the table with new item inputted by user
     public void add(String icost, String iquantity, String iname) {
         model.addRow(new String[]{iname, icost, iquantity});
     }

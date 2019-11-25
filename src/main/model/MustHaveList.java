@@ -9,6 +9,8 @@ public class MustHaveList {
         listOfMustHaves = new ArrayList<>();
     }
 
+    //MODIFIES: this
+    //EFFECTS: add item to musthave list
     public void addItemToMHList(String item) {
         listOfMustHaves.add(item);
     }

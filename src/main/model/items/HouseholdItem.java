@@ -6,6 +6,7 @@ public class HouseholdItem extends Item {
         super(n, "HouseholdItem");
     }
 
+    //EFFECT: put this item into a its category
     @Override
     public void putItemIntoCategory() {
         categorizedItems.put("HouseholdItem", this);

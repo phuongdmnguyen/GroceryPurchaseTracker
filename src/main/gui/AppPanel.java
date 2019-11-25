@@ -20,6 +20,8 @@ public class AppPanel extends JPanel {
         createFunctionPanels();
     }
 
+    //create top panels
+    //EFFECTS: create 3 top panels
     private void createFunctionPanels() throws IOException, JSONException {
         tabbedPane = new JTabbedPane();
 
@@ -60,9 +62,8 @@ public class AppPanel extends JPanel {
         frame.setVisible(true);
     }
 
+    //
     public static void main(String[] args) {
-        //Schedule a job for the event dispatch thread:
-        //creating and showing this application's GUI.
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 //Turn off metal's use of bold fonts

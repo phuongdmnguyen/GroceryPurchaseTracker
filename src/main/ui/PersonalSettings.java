@@ -60,7 +60,8 @@ public class PersonalSettings extends PersonalList {
         UserInterface.personalSettings.listMustHaves.addItemToMHList(mustHaveItem);
     }
 
-
+    //MODIFIES: shoppinglist in groceriesList
+    //EFFECTS: check if grocerieslist is sufficent
     public static void checkGroceryListSufficient() {
         try {
             GroceryTripSettings.groceriesList.isContainMustHaves(listMustHaves);

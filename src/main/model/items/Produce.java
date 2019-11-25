@@ -6,6 +6,7 @@ public class Produce extends Item {
         super(n, "Produce");
     }
 
+    //EFFECT: put this item into a its category
     @Override
     public void putItemIntoCategory() {
         categorizedItems.put("Produce", this);

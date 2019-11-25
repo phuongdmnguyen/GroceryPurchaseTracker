@@ -13,6 +13,7 @@ import static ui.UserInterface.userInputChoices;
 public class GroceryTripSettings {
     static GroceriesList groceriesList;
 
+    //EFFECTS: display grocery trip menu
     public static void displayGroceryTripMenu() {
         System.out.println("\nSelect from category:");
         System.out.println("\tm -> meat");
@@ -22,6 +23,7 @@ public class GroceryTripSettings {
         System.out.println("\te -> exit");
     }
 
+    //EFFECTS: display grocerytrip menu and allow users to choose which item to add
     protected static void addUserInputToGroceries() throws IOException, JSONException {
         boolean keepGoing = true;
 
@@ -44,6 +46,7 @@ public class GroceryTripSettings {
         }
     }
 
+    //EFFECTS: create a new MEAT item based on user input
     public static void addMeat() {
         System.out.println("Input item's name/quit");
         String iname = UserInterface.myObj.next();
@@ -55,12 +58,15 @@ public class GroceryTripSettings {
         itemSetUp(icost, iquantity, item);
     }
 
+    //MODIFIES: groceriesList
+    //EFFECTS: add item to grocerieslist
     public static void itemSetUp(double icost, int iquantity, Item item) {
         item.setCost(icost);
         item.setQuantity(iquantity);
         groceriesList.addItem(item);
     }
 
+    //EFFECTS: create a new GROCERY item based on user input
     public static void addGrocery() {
         System.out.println("Input item's name");
         String iname = UserInterface.myObj.next();
@@ -72,6 +78,7 @@ public class GroceryTripSettings {
         itemSetUp(icost, iquantity, item);
     }
 
+    //EFFECTS: create a new PRODUCE item based on user input
     public static void addProduce() {
         System.out.println("Input item's name");
         String iname = UserInterface.myObj.next();
@@ -85,6 +92,7 @@ public class GroceryTripSettings {
         groceriesList.addItem(item);
     }
 
+    //EFFECTS: create a new HOUSEHOLD item based on user input
     public static void addHouseholdItem() {
         System.out.println("Input item's name/quit");
         String iname = UserInterface.myObj.next();

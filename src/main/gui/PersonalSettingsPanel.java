@@ -50,6 +50,9 @@ public class PersonalSettingsPanel extends Panel {
         return mustHaveList;
     }
 
+    //REQUIRES: Item's name in string
+    //MODIFIES: this
+    //EFFECTS: add a new row to the table with new item inputted by user
     public void addNewMustHaveToTable(String iname) {
         model.addRow(new String[]{iname});
     }

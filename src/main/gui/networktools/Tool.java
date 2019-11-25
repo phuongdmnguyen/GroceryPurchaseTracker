@@ -40,7 +40,8 @@ public class Tool implements ActionListener {
         button.setIcon((Icon) icon);
     }
 
-
+    //REQUIRES: user input
+    //EFFECTS: read api url and obtain recipes from userinput prompts
     public void readSource() throws IOException {
 ////        String url = "http://www.recipepuppy.com/api/";
 //        String url = "http://www.recipepuppy.com/api/?i=onions,garlic&q=omelet";
@@ -71,6 +72,7 @@ public class Tool implements ActionListener {
         }
     }
 
+    //EFFECTS: run readsource and main
     public void main() throws IOException, JSONException {
         readSource();
         parse();

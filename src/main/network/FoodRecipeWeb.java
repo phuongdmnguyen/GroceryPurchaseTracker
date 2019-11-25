@@ -17,6 +17,8 @@ public class FoodRecipeWeb {
     protected static String jsonData;
 
 
+    //REQUIRES: user input
+    //EFFECTS: read api url and obtain recipes from userinput prompts
     public static void readSource() throws IOException {
 
 ////        String url = "http://www.recipepuppy.com/api/";

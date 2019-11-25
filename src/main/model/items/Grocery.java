@@ -9,6 +9,7 @@ public class Grocery extends Item {
         super(n, "Grocery");
     }
 
+    //EFFECT: put this item into a its category
     @Override
     public void putItemIntoCategory() {
         categorizedItems.put("Grocery", this);

@@ -8,11 +8,8 @@ public class FoodParser {
 
     //code adapted prof's JSONparser example
 
-    /**
-     * Prints library parsed from JSON data to console
-     * @param jsonData  string containing JSON data
-     * @throws JSONException when jsonData cannot be parsed as a JSONArray
-     */
+    //REQUIRES: jsonData in String type
+    //EFFECTS: print library parsed from JSON data
     public void parseLibrary(String jsonData) throws JSONException {
         JSONObject library = new JSONObject(jsonData);
         JSONArray resultslibrary = library.getJSONArray("results");
@@ -23,11 +20,8 @@ public class FoodParser {
         }
     }
 
-    /**
-     * Prints book parsed from JSON object to console
-     * @param food  a JSON object representing a book
-     * @throws JSONException when book does not have a title or an author field
-     */
+    //REQUIRES: JSONObject
+    //EFFECTS: print recipe item parsed from JSONObject
     public static void parseFood(JSONObject food) throws JSONException {
         String dishName = food.getString("title");
         String ingredients = food.getString("ingredients");

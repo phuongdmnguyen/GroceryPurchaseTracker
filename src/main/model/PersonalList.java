@@ -18,6 +18,8 @@ public abstract class PersonalList extends Observable {
         this.budget = budget;
     }
 
+    //MODIFIES: this
+    //EFFECTS: add item to the itemList if it doesn't already contain the item
     public void addItem(Item i) {
         if (!itemsList.contains(i)) {
             itemsList.add(i);
