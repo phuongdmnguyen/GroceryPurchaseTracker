@@ -120,6 +120,7 @@ class GroceriesListTest {
         try {
             ArrayList<String> sl = groceriesListSetTest.isContainMustHaves(musthavesSetTest);
             assertEquals(shoppinglistSetTest.size(), sl.size());
+            assertEquals(shoppinglistSetTest.size(), groceriesListSetTest.getShoppingList().size());
 
         } catch (NoBudgetException e) {
             fail();

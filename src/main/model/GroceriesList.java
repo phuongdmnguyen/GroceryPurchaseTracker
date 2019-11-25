@@ -69,6 +69,10 @@ public class GroceriesList extends PersonalList implements Iterable<Item> {
         return shoppingList;
     }
 
+    public ArrayList<String> getShoppingList() {
+        return shoppingList;
+    }
+
     public ArrayList<String> getNamesofItemsInGroceryList(GroceriesList groceriesList) {
         ArrayList<String> listOfItemNames = new ArrayList<>();
         for (Item i:groceriesList.itemsList) {

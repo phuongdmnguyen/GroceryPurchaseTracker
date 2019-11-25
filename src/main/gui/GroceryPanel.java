@@ -17,12 +17,12 @@ public class GroceryPanel extends Panel {
     protected DefaultTableModel model;
     protected Object[][] data;
     protected String[] columnNames = {"Item", "Cost", "Quantity"};
-    protected GroceriesList groceriesList;
+//    protected static GroceriesList groceriesList;
 
 
     public GroceryPanel() {
         ShoppingListMonitor shoppingListMonitor = new ShoppingListMonitor();
-        groceriesList = new GroceriesList(shoppingListMonitor);
+//        groceriesList = new GroceriesList(shoppingListMonitor);
         title = "Grocery";
         initiatlizeData();
         intializeTools();
