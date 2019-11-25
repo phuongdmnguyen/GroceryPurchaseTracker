@@ -70,8 +70,6 @@ public class PersonalSettingsPanel extends Panel {
         BudgetTool budgetTool = new BudgetTool(this,toolArea);
         MustHaveTool mustHaveTool = new MustHaveTool(this, toolArea);
         TripSufficientTool tripSufficientTool = new TripSufficientTool(this,toolArea);
-        JOptionPane.showMessageDialog(this, getGroceryList().getShoppingList());
-
     }
 
     @Override
