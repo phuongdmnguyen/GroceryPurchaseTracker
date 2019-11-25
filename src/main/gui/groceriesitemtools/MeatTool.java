@@ -5,12 +5,17 @@ import model.items.Item;
 import model.items.Meat;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MeatTool extends Tool {
+    static final ClassLoader loader = gui.groceriesitemtools.MeatTool.class.getClassLoader();
+
 
     public MeatTool(GroceryPanel panel, JComponent parent) {
         super(panel, parent);
         button.setActionCommand("meat");
+        ImageIcon icon = createScaledImageIcon("meat.jpg");
+        button.setIcon(icon);
     }
 
     @Override
@@ -34,6 +39,15 @@ public class MeatTool extends Tool {
         item.setCost(icost);
         item.setQuantity(iquantity);
         groceryPanel.getGroceryList().addItem(item);
+    }
+
+    protected static ImageIcon createScaledImageIcon(String path) {
+//        java.net.URL imgURL = Tool.class.getResource(path);
+        java.net.URL imgURL = loader.getResource(path);
+        ImageIcon img;
+        img = new ImageIcon(imgURL);
+        Image newimg = img.getImage().getScaledInstance(ICON_WIDTH,ICON_HEIGHT, java.awt.Image.SCALE_SMOOTH);
+        return new ImageIcon(newimg);
     }
 
 }

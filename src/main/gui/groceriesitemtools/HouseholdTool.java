@@ -5,12 +5,17 @@ import model.items.Item;
 import model.items.HouseholdItem;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class HouseholdTool extends Tool {
+    static final ClassLoader loader = gui.groceriesitemtools.GroceryTool.class.getClassLoader();
+
 
     public HouseholdTool(GroceryPanel panel, JComponent parent) {
         super(panel, parent);
         button.setActionCommand("household");
+        ImageIcon icon = createScaledImageIcon("household.jpg");
+        button.setIcon(icon);
     }
 
     public static void addHousehold() {
@@ -29,6 +34,15 @@ public class HouseholdTool extends Tool {
         item.setCost(icost);
         item.setQuantity(iquantity);
         groceryPanel.getGroceryList().addItem(item);
+    }
+
+    protected static ImageIcon createScaledImageIcon(String path) {
+//        java.net.URL imgURL = Tool.class.getResource(path);
+        java.net.URL imgURL = loader.getResource(path);
+        ImageIcon img;
+        img = new ImageIcon(imgURL);
+        Image newimg = img.getImage().getScaledInstance(ICON_WIDTH,ICON_HEIGHT, java.awt.Image.SCALE_SMOOTH);
+        return new ImageIcon(newimg);
     }
 
 

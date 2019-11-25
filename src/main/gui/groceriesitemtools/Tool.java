@@ -3,6 +3,7 @@ package gui.groceriesitemtools;
 import gui.GroceryPanel;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,6 +12,8 @@ public abstract class Tool {
     protected static GroceryPanel groceryPanel;
     protected JButton button;
     private boolean active;
+    protected static final int ICON_WIDTH = 120;
+    protected static final int ICON_HEIGHT = 120;
 
     public Tool(GroceryPanel panel, JComponent parent) {
         this.groceryPanel = panel;
@@ -25,7 +28,8 @@ public abstract class Tool {
     }
 
     protected void createButton() {
-        button = new JButton(getLabel());
+        button = new JButton();
+        button.setBackground(Color.WHITE);
     }
 
     protected abstract String getLabel();
