@@ -1,10 +1,8 @@
 package gui.networktools;
 
 import gui.NetworkPanel;
-import network.FoodParser;
 import org.json.JSONException;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,7 +10,6 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -35,9 +32,10 @@ public class Tool implements ActionListener {
     }
 
     protected void createButton() throws IOException {
-        ImageIcon icon = createImageIcon("recipe.jpg");
-        button = new JButton("Find new recipes");
-        button.setIcon((Icon) icon);
+        ImageIcon icon = createScaledImageIcon("recipe1.jpg");
+        button = new JButton(icon);
+        button.setBackground(Color.WHITE);
+        button.setPreferredSize(new Dimension(100,100));
     }
 
     //REQUIRES: user input
@@ -78,15 +76,13 @@ public class Tool implements ActionListener {
         parse();
     }
 
-    protected static ImageIcon createImageIcon(String path) {
+    protected static ImageIcon createScaledImageIcon(String path) {
 //        java.net.URL imgURL = Tool.class.getResource(path);
         java.net.URL imgURL = loader.getResource(path);
-        if (imgURL != null) {
-            return new ImageIcon(imgURL);
-        } else {
-            System.err.println("Couldn't find file: " + path);
-            return null;
-        }
+        ImageIcon img;
+        img = new ImageIcon(imgURL);
+        Image newimg = img.getImage().getScaledInstance(200,200, java.awt.Image.SCALE_SMOOTH);
+        return new ImageIcon(newimg);
     }
 
     @Override

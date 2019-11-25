@@ -8,6 +8,7 @@ import network.FoodParser;
 import ui.UserInterface;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -20,8 +21,12 @@ public class NetworkPanel extends Panel {
     protected String jsonData;
 
     public NetworkPanel() throws IOException, JSONException {
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         title = "Network";
-        Tool recipeTool = new Tool(this,this);
+        JPanel filler = new JPanel();
+        filler.setBackground(Color.WHITE);
+        add(filler,TOP_ALIGNMENT);
+        initializeTools();
     }
 
     public void setJsonData(String data) {
@@ -30,6 +35,16 @@ public class NetworkPanel extends Panel {
 
     public String getJsonData() {
         return jsonData;
+    }
+
+    //EFFECTS: create recipeTool and place it at the bottom of screen
+    public void initializeTools() throws IOException {
+        JPanel toolArea = new JPanel();
+        toolArea.setLayout(new GridLayout(0,1));
+        toolArea.setPreferredSize(new Dimension(100,100));
+        add(toolArea, BOTTOM_ALIGNMENT);
+
+        Tool recipeTool = new Tool(this,toolArea);
     }
 
 
