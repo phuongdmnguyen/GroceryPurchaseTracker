@@ -1,9 +1,11 @@
 package network;
 
+import gui.PersonalSettingsPanel;
 import org.json.JSONException;
 import org.json.JSONObject;
 import ui.UserInterface;
 
+import javax.swing.*;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
@@ -19,9 +21,12 @@ public class FoodRecipeWeb {
 
 ////        String url = "http://www.recipepuppy.com/api/";
 //        String url = "http://www.recipepuppy.com/api/?i=onions,garlic&q=omelet";
+
         System.out.println("Input an ingredient that the dish must have");
+//       String ingredient = JOptionPane.showInputDialog("Input an ingredient that the dish must have");
         String ingredient = UserInterface.myObj.next();
         System.out.println("Input what kind of dish you want");
+//        String dish = JOptionPane.showInputDialog("Input what kind of dish you want");
         String dish = UserInterface.myObj.next();
         String url = "http://www.recipepuppy.com/api/?i=" + ingredient + "&q=" + dish;
         URL theUrl = new URL(url);
