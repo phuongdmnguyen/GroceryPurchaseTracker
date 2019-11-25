@@ -7,10 +7,11 @@ import model.items.Meat;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 
-public class GroceriesList extends PersonalList {
+public class GroceriesList extends PersonalList implements Iterable<Item> {
     protected ArrayList<String> shoppingList;
     //general items categorized by its category
 
@@ -28,6 +29,10 @@ public class GroceriesList extends PersonalList {
             sum += i.getItemTotalCost();
         }
         return sum;
+    }
+
+    public Item getSpecificItemInList(int i) {
+        return itemsList.get(i);
     }
 
 //    REQUIRES: getTotalCost and budget must be > 0
@@ -93,5 +98,10 @@ public class GroceriesList extends PersonalList {
             writer.println(" ");
         }
         writer.close();
+    }
+
+    @Override
+    public Iterator<Item> iterator() {
+        return itemsList.iterator();
     }
 }

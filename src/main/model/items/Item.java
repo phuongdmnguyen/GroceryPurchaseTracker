@@ -13,7 +13,7 @@ public abstract class Item {
     protected int quantity; // amount bought
     private ArrayList<PersonalList> personalLists; //item is part of a personalList
 
-    protected HashMap<String,Item> categorizedItems;
+    protected static HashMap<String,Item> categorizedItems;
 
     public Item(String n, String category) {
         name = n;
@@ -60,7 +60,7 @@ public abstract class Item {
         }
     }
 
-    public abstract void putItemIntoCategory(Item item);
+    public abstract void putItemIntoCategory();
 
     @Override
     public boolean equals(Object o) {

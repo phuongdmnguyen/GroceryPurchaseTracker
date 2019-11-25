@@ -51,6 +51,12 @@ public class ItemTest {
     }
 
     @Test
+    public void testPutItemInCategory() {
+        item1.putItemIntoCategory();
+
+    }
+
+    @Test
     public void testNotEqualsDifferentCategory() {
         assertFalse(item1.equals(item2));
     }

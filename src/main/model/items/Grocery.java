@@ -10,7 +10,7 @@ public class Grocery extends Item {
     }
 
     @Override
-    public void putItemIntoCategory(Item item) {
-        categorizedItems.put("Grocery",item);
+    public void putItemIntoCategory() {
+        categorizedItems.put("Grocery", this);
     }
 }

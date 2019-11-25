@@ -8,7 +8,7 @@ import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 
-//*Code was taken from stackoverflow//
+//*Code was adapted from stackoverflow//
 
 public class FoodRecipeWeb {
     protected static JSONObject jsonObject;

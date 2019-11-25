@@ -6,8 +6,8 @@ public class Meat extends Item {
     }
 
     @Override
-    public void putItemIntoCategory(Item item) {
-        categorizedItems.put("Meat",item);
+    public void putItemIntoCategory() {
+        categorizedItems.put("Meat", this);
     }
 }
 

@@ -42,7 +42,6 @@ public class GroceryTripSettings {
                 keepGoing = false;
             }
         }
-        userInputChoices();
     }
 
     public static void addMeat() {

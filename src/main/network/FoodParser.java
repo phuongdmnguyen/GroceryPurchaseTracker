@@ -6,6 +6,8 @@ import org.json.JSONObject;
 
 public class FoodParser {
 
+    //code adapted prof's JSONparser example
+
     /**
      * Prints library parsed from JSON data to console
      * @param jsonData  string containing JSON data
@@ -31,8 +33,8 @@ public class FoodParser {
         String ingredients = food.getString("ingredients");
         String recipelink = food.getString("href");
 
-        System.out.println("Dish name: " + dishName);
-        System.out.println("You would need these ingredients: " + ingredients);
-        System.out.println("Follow the recipe found here: " + recipelink);
+        System.out.println("\nDish name: " + dishName);
+        System.out.println("\tYou would need these ingredients: " + ingredients);
+        System.out.println("\tFollow the recipe found here: " + recipelink);
     }
 }

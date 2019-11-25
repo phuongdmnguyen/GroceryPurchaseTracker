@@ -38,7 +38,6 @@ public class PersonalSettings extends PersonalList {
                 keepGoing = false;
             }
         }
-        userInputChoices();
     }
 
     public static void displayPersonalSettingsMenu() {

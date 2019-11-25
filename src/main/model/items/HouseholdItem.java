@@ -7,7 +7,7 @@ public class HouseholdItem extends Item {
     }
 
     @Override
-    public void putItemIntoCategory(Item item) {
-        categorizedItems.put("HouseholdItem",item);
+    public void putItemIntoCategory() {
+        categorizedItems.put("HouseholdItem", this);
     }
 }

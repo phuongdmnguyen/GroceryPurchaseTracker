@@ -7,7 +7,7 @@ public class Produce extends Item {
     }
 
     @Override
-    public void putItemIntoCategory(Item item) {
-        categorizedItems.put("Produce", item);
+    public void putItemIntoCategory() {
+        categorizedItems.put("Produce", this);
     }
 }
