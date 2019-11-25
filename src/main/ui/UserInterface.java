@@ -1,7 +1,6 @@
 package ui;
 
 import model.GroceriesList;
-import model.MustHaveList;
 import model.ShoppingListMonitor;
 import network.FoodRecipeWeb;
 import org.json.JSONException;

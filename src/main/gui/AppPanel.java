@@ -1,8 +1,11 @@
 package gui;
 
+import org.json.JSONException;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 public class AppPanel extends JPanel {
     public static final int WIDTH = 800;
@@ -10,14 +13,14 @@ public class AppPanel extends JPanel {
 
     private JTabbedPane tabbedPane;
 
-    public AppPanel() {
+    public AppPanel() throws IOException, JSONException {
         super(new GridLayout(1, 1));
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(Color.GRAY);
         createFunctionPanels();
     }
 
-    private void createFunctionPanels() {
+    private void createFunctionPanels() throws IOException, JSONException {
         tabbedPane = new JTabbedPane();
 
         PersonalSettingsPanel personalSettingsPanel = new PersonalSettingsPanel();
@@ -43,7 +46,7 @@ public class AppPanel extends JPanel {
     }
 
 
-    private static void createAndShowGUI() {
+    private static void createAndShowGUI() throws IOException, JSONException {
         //Create and set up the window.
         JFrame frame = new JFrame("Grocery Budget Tracker");
         frame.setSize(900,900);
@@ -64,7 +67,13 @@ public class AppPanel extends JPanel {
             public void run() {
                 //Turn off metal's use of bold fonts
                 UIManager.put("swing.boldMetal", Boolean.FALSE);
-                createAndShowGUI();
+                try {
+                    createAndShowGUI();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
